@@ -12,9 +12,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Verify package.json
+        run: |
+          if [ ! -f package.json ]; then
+            echo "Initializing package.json..."
+            npm init -y
+            npm install remark-cli remark-preset-wooorm remark-preset-lint-consistent --save-dev
+          fi
+
       - name: Install dependencies
         run: npm install
 
       - name: Run markdown lint
-        run: |
-          npx remark . --use remark-preset-wooorm --use remark-preset-lint-consistent --quiet
+        run: npx remark . --use remark-preset-wooorm --use remark-preset-lint-consistent --quiet

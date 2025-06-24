@@ -17,9 +17,11 @@ jobs:
 
       - name: Run markdown lint
         run: |
+          npm install
           npx remark . \
-            --use remark-preset-wooorm \
-            --use remark-preset-lint-consistent \
-            --frail \
-            --no-stdout \
-            --silent
+          --use remark-preset-wooorm \  # 修正拼写
+          --use remark-preset-lint-consistent \
+          --frail \  # 修正参数
+          --no-stdout \
+          --silent
+      
